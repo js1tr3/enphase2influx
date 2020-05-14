@@ -4,9 +4,9 @@
 """PollAndPushServer.py: Script for query production values from Enphase-S gateway hosted
 on a local server server and push data on InfluxDb.."""
 
-__author__ = "César Papilloud, Pierre-A. Mudry"
+__author__ = "César Papilloud, Pierre-A. Mudry, Jason Siegel"
 __copyright__ = "Copyright 2018, FireMON, WaterMON, EarthMON, SpaceMON"
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 import json
 import urllib3
@@ -18,7 +18,7 @@ import argparse
 # Sleep time setting
 __sleepTime__ = 30
 # InfluxDB settings
-__host__ = "localhost"
+__host__ = "NUCTV"
 __port__ = 8086
 __user__ = "admin"
 __password__ = "admin"
@@ -67,7 +67,7 @@ try:
     r.status
     r.data
     # Load response into json object
-    data = json.loads(response.read())
+    data = json.loads(r.data)
     productionInverterData = data["production"][0]
     productionEimData = data["production"][1]
     consumptionData = data["consumption"][0]
